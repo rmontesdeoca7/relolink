@@ -1,9 +1,9 @@
-<ion-header>
+<!-- <ion-header>
 <ion-toolbar>
 <ion-title>Step Form</ion-title>
 </ion-toolbar>
 </ion-header>
- 
+
   <ion-content class="ion-padding">
 <form>
 <div *ngFor="let step of steps">
@@ -21,7 +21,50 @@
 </ion-item>
 </div>
 </form>
- 
+
     <ion-button expand="block">Submit</ion-button>
- 
+
+</ion-content> -->
+
+<ion-header><ion-toolbar><ion-title>User Form</ion-title></ion-toolbar></ion-header>
+<ion-content>
+  <form [formGroup]="form">
+    <ng-container [ngSwitch]="step">
+
+      <ng-container *ngSwitchCase="0">
+        <ion-item><ion-label>Name</ion-label><ion-input formControlName="name"></ion-input></ion-item>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="1">
+        <ion-item><ion-label>Last Name</ion-label><ion-input formControlName="lastName"></ion-input></ion-item>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="2">
+        <ion-item><ion-label>Country</ion-label>
+          <ion-select formControlName="country" (ionChange)="form.get('phoneNumber')?.setValue(form.value.country === 'Argentina' ? '+54 ' : '+52 ')">
+            <ion-select-option *ngFor="let country of countries" [value]="country">{{country}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="3">
+        <ion-item><ion-label>City</ion-label>
+          <ion-select formControlName="city">
+            <ion-select-option *ngFor="let city of currentCityOptions" [value]="city">{{city}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="4">
+        <ion-item><ion-label>Phone Number</ion-label><ion-input formControlName="phoneNumber"></ion-input></ion-item>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="5">
+        <ion-item><ion-label>Email</ion-label><ion-input formControlName="email"></ion-input></ion-item>
+      </ng-container>
+
+    </ng-container>
+    <ion-button (click)="prevStep()" [disabled]="step === 0">Back</ion-button>
+    <ion-button (click)="step < 5 ? nextStep() : onSubmit()">{{step < 5 ? 'Next' : 'Submit'}}</ion-button>
+  </form>
 </ion-content>
