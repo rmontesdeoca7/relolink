@@ -28,8 +28,14 @@ ion-select {
   transition: all 0.3s ease-in-out;
 }
 
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
 ion-button {
-  margin-top: 1rem;
   border-radius: 10px;
   --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
@@ -69,7 +75,7 @@ ion-button[color="primary"] {
 }
 
 ion-button[color="secondary"] {
-  background: linear-gradient(to right, #43e97b, #38f9d7);
+  background: linear-gradient(to right, #6c757d, #6c757d);
   color: #fff;
 }
 
@@ -94,6 +100,6 @@ ion-button[color="secondary"] {
     background: linear-gradient(to right, #5ee7df, #b490ca);
   }
   ion-button[color="secondary"] {
-    background: linear-gradient(to right, #4facfe, #00f2fe);
+    background: linear-gradient(to right, #adb5bd, #adb5bd);
   }
 }
