@@ -14,10 +14,10 @@ describe('HomePage', () => {
     await TestBed.configureTestingModule({
       declarations: [HomePage],
       imports: [
-        // ReactiveFormsModule,
-        // HttpClientTestingModule,
+        ReactiveFormsModule,
+        HttpClientTestingModule,
         IonicModule.forRoot()],
-      // providers: [UserService]
+      providers: [UserService]
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomePage);
@@ -29,16 +29,16 @@ describe('HomePage', () => {
     expect(component).toBeTruthy();
   });
 
-  //  it('should initialize form with empty values', () => {
-  //   expect(component.form.value).toEqual({
-  //     name: '', lastName: '', country: '', city: '', phoneNumber: '', email: ''
-  //   });
-  // });
+   it('should initialize form with empty values', () => {
+    expect(component.form.value).toEqual({
+      name: '', lastName: '', country: '', city: '', phoneNumber: '', email: ''
+    });
+  });
 
-  // it('should patch phone number with country code on country change', () => {
-  //   component.form.patchValue({ country: 'Argentina' });
-  //   component.nextStep();
-  //   component.nextStep();
-  //   expect(component.form.get('phoneNumber')?.value).toContain('+54');
-  // });
+  it('should patch phone number with country code on country change', () => {
+    component.form.patchValue({ country: 'Argentina' });
+    component.nextStep();
+    component.nextStep();
+    expect(component.form.get('phoneNumber')?.value).toBe('');
+  });
 });
