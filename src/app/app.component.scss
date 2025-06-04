@@ -1,0 +1,11 @@
+ion-item.error {
+  --border-color: #e74c3c;
+  --highlight-color-focused: #e74c3c;
+}
+
+ion-text.error-msg {
+  color: #e74c3c;
+  font-size: 0.4rem;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+}

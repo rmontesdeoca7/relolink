@@ -32,7 +32,11 @@ export class HomePage {
       country:  ['', Validators.required],
       city:     ['', Validators.required],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\+\d+\s\d+$/)]],
-      email:    ['', [Validators.required, Validators.email]]
+      email:    ['', [
+        Validators.required,
+        Validators.email,
+        Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
+      ]]
     });
   }
 
@@ -67,7 +71,6 @@ export class HomePage {
 
   onSubmit(): void {
     if (this.form.valid) {
-      console.log('Form submitted:', this.form.value);
       // this.userService.saveUser({ userInfo: this.form.value }).subscribe();
       this.showResume();
 
@@ -76,6 +79,13 @@ export class HomePage {
       Object.values(this.form.controls).forEach(c => c.markAsTouched());
     }
   }
+
+  // onPhoneInput(event: any): void {
+  //   const input = event.target as HTMLInputElement;
+  //   const digitsOnly = input.value.replace(/\D/g, '');
+  //   input.value = digitsOnly;
+  //   this.form.get('phoneNumber')?.setValue(('+'+digitsOnly), { emitEvent: false });
+  // }
 
   async showResume() {
     const modal = await this.modalCtrl.create({
@@ -87,6 +97,11 @@ export class HomePage {
     });
 
     await modal.present();
+    const { data } = await modal.onWillDismiss();
+    if (data?.close) {
+      this.form.reset();
+      this.step = 0;
+    }
   }
 }
 

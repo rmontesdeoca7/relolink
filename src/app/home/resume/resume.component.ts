@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
-import { IonHeader, IonContent, IonItem, IonLabel } from "@ionic/angular/standalone";
+import { IonicModule, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-summary',
@@ -12,4 +11,10 @@ import { IonHeader, IonContent, IonItem, IonLabel } from "@ionic/angular/standal
 })
 export class ResumeComponent {
   @Input() userInfo: any;
+
+  constructor(private ModalController: ModalController) {}
+
+  close():void {
+    this.ModalController.dismiss({close: true});
+  }
 }

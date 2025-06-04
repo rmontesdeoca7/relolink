@@ -26,25 +26,45 @@
 
 </ion-content> -->
 
-<ion-header><ion-toolbar><ion-title>User Form</ion-title></ion-toolbar></ion-header>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-img src="assets/logo.svg" slot="start" style="height: 30px;"></ion-img>
+    <ion-title style="color: white">User info</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
   <form [formGroup]="form">
     <ng-container [ngSwitch]="step">
 
       <ng-container *ngSwitchCase="0">
-        <ion-item><ion-label>Name</ion-label><ion-input formControlName="name"></ion-input></ion-item>
+        <ion-item>
+          <ion-label>Name</ion-label>
+          <ion-input formControlName="name"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="error-msg">
+          The field is required.
+        </ion-text>
       </ng-container>
 
       <ng-container *ngSwitchCase="1">
-        <ion-item><ion-label>Last Name</ion-label><ion-input formControlName="lastName"></ion-input></ion-item>
+        <ion-item><ion-label>Last Name</ion-label>
+          <ion-input formControlName="lastName"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched" class="error-msg">
+          The field is required.
+        </ion-text>
       </ng-container>
 
       <ng-container *ngSwitchCase="2">
-        <ion-item><ion-label>Country</ion-label>
+        <ion-item>
+          <ion-label>Country</ion-label>
           <ion-select formControlName="country" (ionChange)="form.get('phoneNumber')?.setValue(form.value.country === 'Argentina' ? '+54 ' : '+52 ')">
             <ion-select-option *ngFor="let country of countries" [value]="country">{{country}}</ion-select-option>
           </ion-select>
         </ion-item>
+        <ion-text color="danger" *ngIf="form.get('country')?.invalid && form.get('country')?.touched" class="error-msg">
+          The field is required.
+        </ion-text>
       </ng-container>
 
       <ng-container *ngSwitchCase="3">
@@ -53,21 +73,39 @@
             <ion-select-option *ngFor="let city of currentCityOptions" [value]="city">{{city}}</ion-select-option>
           </ion-select>
         </ion-item>
+        <ion-text color="danger" *ngIf="form.get('city')?.invalid && form.get('city')?.touched" class="error-msg">
+          The field is required.
+        </ion-text>
       </ng-container>
 
       <ng-container *ngSwitchCase="4">
-        <ion-item><ion-label>Phone Number</ion-label><ion-input formControlName="phoneNumber"></ion-input></ion-item>
+        <ion-item>
+          <ion-label>Phone Number</ion-label>
+          <ion-input
+            formControlName="phoneNumber"
+          >
+          </ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="form.get('phoneNumber')?.invalid && form.get('phoneNumber')?.touched" class="error-msg">
+          The field is required and the phone number must be in a correct format.
+        </ion-text>
       </ng-container>
 
       <ng-container *ngSwitchCase="5">
-        <ion-item><ion-label>Email</ion-label><ion-input formControlName="email"></ion-input></ion-item>
+        <ion-item>
+          <ion-label>Email</ion-label>
+          <ion-input formControlName="email"></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="error-msg">
+          The field is required and the email number must be in a correct format.
+        </ion-text>
       </ng-container>
 
     </ng-container>
 
   </form>
   <ion-card-content class="">
-    <ion-button (click)="prevStep()" [disabled]="step === 0">Back</ion-button>
-    <ion-button (click)="step < 5 ? nextStep() : onSubmit()">{{step < 5 ? 'Next' : 'Submit'}}</ion-button>
+    <ion-button (click)="prevStep()" [disabled]="step === 0" color="secondary">Back</ion-button>
+    <ion-button (click)="step < 5 ? nextStep() : onSubmit()" color="primary">{{step < 5 ? 'Next' : 'Submit'}}</ion-button>
   </ion-card-content>
 </ion-content>
