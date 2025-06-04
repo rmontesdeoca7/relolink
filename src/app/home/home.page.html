@@ -64,7 +64,10 @@
       </ng-container>
 
     </ng-container>
+
+  </form>
+  <ion-card-content class="">
     <ion-button (click)="prevStep()" [disabled]="step === 0">Back</ion-button>
     <ion-button (click)="step < 5 ? nextStep() : onSubmit()">{{step < 5 ? 'Next' : 'Submit'}}</ion-button>
-  </form>
+  </ion-card-content>
 </ion-content>

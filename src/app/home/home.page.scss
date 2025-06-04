@@ -20,6 +20,12 @@ ion-label {
   color: #343a40;
 }
 
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 ion-input,
 ion-select {
   --padding-start: 0.5rem;

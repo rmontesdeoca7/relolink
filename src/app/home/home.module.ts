@@ -6,6 +6,8 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { UserService } from '../services/user.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ResumeComponent } from './resume/resume.component';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { UserService } from '../services/user.service';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HttpClientModule,
+    HomePageRoutingModule,
+    ResumeComponent
   ],
   providers: [UserService],
   declarations: [HomePage]
